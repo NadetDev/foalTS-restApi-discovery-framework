@@ -8,6 +8,7 @@ import {
   HttpResponseNotFound,
   HttpResponseOK,
   Post,
+  ValidateBody,
 } from '@foal/core';
 
 import { Todo } from '../entities';
@@ -32,6 +33,14 @@ export class ApiController {
   }
 
   @Post('/todos')
+  @ValidateBody({
+    additionalProperties: false,
+    properties: {
+      text: { type: 'string' },
+    },
+    required: ['text'],
+    type: 'object',
+  })
   async createTodo(ctx: Context) {
     const todo = new Todo();
     todo.text = ctx.request.body.text;
