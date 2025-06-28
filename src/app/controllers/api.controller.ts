@@ -1,4 +1,6 @@
 import {
+  ApiInfo,
+  ApiServer,
   Context,
   Delete,
   Get,
@@ -10,6 +12,13 @@ import {
 
 import { Todo } from '../entities';
 
+@ApiInfo({
+  title: 'NadetDev FoalTS API',
+  version: '1.0.0',
+})
+@ApiServer({
+  url: '/api',
+})
 export class ApiController {
   @Get('/')
   index(ctx: Context) {
